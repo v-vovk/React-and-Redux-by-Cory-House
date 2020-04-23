@@ -5,10 +5,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 import App from "./components/App";
+import configureStore from "./redux/configureStore";
+import { Provider } from "react-redux";
+
+const store = configureStore();
 
 render(
-  <Router>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("app")
 );
