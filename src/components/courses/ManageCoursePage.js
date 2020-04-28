@@ -12,6 +12,7 @@ const ManageCoursePage = ({
   loadCourses,
   loadAuthors,
   saveCourse,
+  history,
   ...props
 }) => {
   const [course, setCourse] = useState({ ...props.course });
@@ -41,7 +42,9 @@ const ManageCoursePage = ({
 
   const handleSave = (e) => {
     e.preventDefault();
-    saveCourse(course);
+    saveCourse(course).then(() => {
+      history.push("/courses");
+    });
   };
 
   return (
@@ -58,6 +61,7 @@ const ManageCoursePage = ({
 ManageCoursePage.propTypes = {
   authors: PropTypes.array.isRequired,
   course: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   courses: PropTypes.array.isRequired,
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
